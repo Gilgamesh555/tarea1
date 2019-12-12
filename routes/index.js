@@ -8,25 +8,19 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/hola', function(req,res,next){
+router.get('/hello_world', function(req,res,next){
     res.status(200).json({
-        msn:"Hola Esto FUNCIONAAAAAAA"
+        msn:"Hello Worlds"
     });
 });
 
-
-router.post('/persona', async(req, res) => {
-    var params = req.body;
-    var persona =  new USER(params);
-    var result = await persona.save();
-    res.status(200).json(result);
-});
-
-router.get('/getpersona', async(req, res) => {
+router.get('/gpersona', async(req, res) => {
   var params = req.query;
   USER.find({}).limit(1000).sort({_id: 0}).exec((err,docs) => {
     res.status(200).json(docs);
     });
 });
+
+//must be token in there but, there's no time so fy :)
 
 module.exports = router;
